@@ -4,7 +4,7 @@ import parts from '../../../assets/images/about_us/parts.jpg';
 
 const About = () => {
     return (
-        <div className="hero bg-white">
+        <div className="hero bg-gray-200 rounded p-3">
             <div className="hero-content flex-col lg:flex-row">
                 <div className='lg:w-1/2 relative'>
                     <img src={person} className="w-3/4 rounded-lg shadow-2xl" />
