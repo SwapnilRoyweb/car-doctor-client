@@ -11,7 +11,7 @@ const Features = () => {
         <div className='my-10 flex flex-col items-center justify-center'>
             <div className='text-center space-y-3'>
                 <h3 className='text-lg text-orange-600 font-semibold'>Core Features</h3>
-                <h2 className='text-5xl font-bold'>Meet our Team</h2>
+                <h2 className='text-5xl font-bold'>Why Choose Us</h2>
                 <p>The majority have suffered alteration in some form, by injected humour, or randomised <br /> words which don't look even slightly believable. </p>
             </div>
             <div className='mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-10'>

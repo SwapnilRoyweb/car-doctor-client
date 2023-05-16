@@ -13,7 +13,7 @@ const Team = () => {
                 <p>The majority have suffered alteration in some form, by injected humour, or randomised <br /> words which don't look even slightly believable. </p>
             </div>
             <div className='mt-10 grid grid-cols-1 lg:grid-cols-3 gap-10'>
-                <div className="card w-96 glass hover:bg-red-200">
+                <div className="card w-96 glass hover:bg-red-100">
                     <figure><img src={member1} alt="car!" /></figure>
                     <div className="card-body text-center">
                         <h2 className="text-2xl font-bold">Car Engine Plug</h2>
@@ -26,7 +26,7 @@ const Team = () => {
                         </div>
                     </div>
                 </div>
-                <div className="card w-96 glass hover:bg-red-200">
+                <div className="card w-96 glass hover:bg-red-100">
                     <figure><img src={member2} alt="car!" /></figure>
                     <div className="card-body text-center">
                         <h2 className="text-2xl font-bold">Car Engine Plug</h2>
@@ -39,7 +39,7 @@ const Team = () => {
                         </div>
                     </div>
                 </div>
-                <div className="card w-96 glass hover:bg-red-200">
+                <div className="card w-96 glass hover:bg-red-100">
                     <figure><img src={member3} alt="car!" /></figure>
                     <div className="card-body text-center">
                         <h2 className="text-2xl font-bold">Car Engine Plug</h2>

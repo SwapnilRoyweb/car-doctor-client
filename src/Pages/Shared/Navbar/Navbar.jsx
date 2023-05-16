@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.svg'
-import { FaSearch, FaShoppingBag } from 'react-icons/fa';
+import { FaSearch, FaShoppingBag, FaSignOutAlt } from 'react-icons/fa';
+import { useContext } from 'react';
+import { AuthContext } from '../../../Providers/AuthProvider';
 
 const Navbar = () => {
+
+    const {user, SignOut} = useContext(AuthContext);
+
+    
 
     const navItems = <>
         <li><Link to='/'>Home</Link></li>
@@ -31,10 +37,14 @@ const Navbar = () => {
                     {navItems}
                 </ul>
             </div>
-            <div className="navbar-end flex gap-1">
+            <div className="navbar-end flex gap-3">
                 <button className='btn btn-ghost'><FaShoppingBag/></button>
                 <button className='btn btn-ghost'><FaSearch /></button>
-                <button className="btn btn-outline btn-error">Appointment</button>
+                {
+                    user && <h1>{user.email}</h1>
+                }
+                <Link to='/signUp'><button className="btn btn-outline btn-error">Appointment</button></Link>
+                {user && <button className="btn btn-outline btn-error btn-circle" onClick={SignOut}><FaSignOutAlt/></button>}
             </div>
         </div>
     );
