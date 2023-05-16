@@ -4,12 +4,24 @@ import logo from '../../../assets/logo.svg'
 import { FaSearch, FaShoppingBag, FaSignOutAlt } from 'react-icons/fa';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
 
-    const {user, SignOut} = useContext(AuthContext);
+    const { user, SignOut } = useContext(AuthContext);
 
-    
+    const signOut = () => {
+        SignOut()
+            .then(result => {
+                Swal.fire({
+                    title: 'Sign Out',
+                    text: 'User Logout Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Okay'
+                })
+            })
+            .catch(error => console.log(error))
+    }
 
     const navItems = <>
         <li><Link to='/'>Home</Link></li>
@@ -38,13 +50,13 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end flex gap-3">
-                <button className='btn btn-ghost'><FaShoppingBag/></button>
+                <button className='btn btn-ghost'><FaShoppingBag /></button>
                 <button className='btn btn-ghost'><FaSearch /></button>
                 {
                     user && <h1>{user.email}</h1>
                 }
                 <Link to='/signUp'><button className="btn btn-outline btn-error">Appointment</button></Link>
-                {user && <button className="btn btn-outline btn-error btn-circle" onClick={SignOut}><FaSignOutAlt/></button>}
+                {user && <button className="btn btn-outline btn-error btn-circle" onClick={signOut}><FaSignOutAlt /></button>}
             </div>
         </div>
     );

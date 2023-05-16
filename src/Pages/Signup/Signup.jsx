@@ -4,6 +4,7 @@ import { FaGooglePlusG, FaFacebook, FaLinkedin, FaRegTimesCircle } from 'react-i
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Signup = () => {
 
@@ -21,7 +22,13 @@ const Signup = () => {
         createUser(email, password)
         .then(result => {
             const user = result.user;
-            console.log(user);
+            // console.log(user);
+            Swal.fire({
+                title: 'Sign up',
+                text: 'User Created Successfully',
+                icon: 'success',
+                confirmButtonText: 'Okay'
+              })
             form.reset();
         })
         .catch(error => console.log(error))

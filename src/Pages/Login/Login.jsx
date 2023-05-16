@@ -4,6 +4,7 @@ import { FaGooglePlusG, FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2'
 
 const Login = () => {
 
@@ -15,12 +16,18 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        // console.log(email, password);
 
         signIn(email, password)
         .then(result => {
             const user = result.user;
-            console.log(user);
+            // console.log(user);
+            Swal.fire({
+                title: 'Sign In',
+                text: 'User Login Successfully',
+                icon: 'success',
+                confirmButtonText: 'Okay'
+              })
             form.reset();
         })
         .catch(error => console.log(error))
