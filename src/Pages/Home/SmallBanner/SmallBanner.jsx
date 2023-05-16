@@ -3,7 +3,7 @@ import { FaCalendarTimes, FaPhoneAlt, FaLocationArrow } from 'react-icons/fa';
 
 const SmallBanner = () => {
     return (
-        <div className='my-10 bg-black text-white p-10 rounded-lg flex justify-between'>
+        <div className='my-10 bg-black text-white p-10 rounded-lg flex justify-around'>
             <div className='flex gap-3 items-center'>
                 <FaCalendarTimes />
                 <div>
