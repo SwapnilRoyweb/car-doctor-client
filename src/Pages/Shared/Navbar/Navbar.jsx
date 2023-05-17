@@ -49,14 +49,14 @@ const Navbar = () => {
                     {navItems}
                 </ul>
             </div>
-            <div className="navbar-end flex gap-3">
+            <div className="navbar-end flex gap-2">
                 <button className='btn btn-ghost'><FaShoppingBag /></button>
                 <button className='btn btn-ghost'><FaSearch /></button>
                 {
                     user && <h1>{user.email}</h1>
                 }
                 <Link to='/signUp'><button className="btn btn-outline btn-error">Appointment</button></Link>
-                {user && <button className="btn btn-outline btn-error btn-circle" onClick={signOut}><FaSignOutAlt /></button>}
+                {user && <button className="btn btn-outline btn-error btn-circle" title='Logout' onClick={signOut}><FaSignOutAlt /></button>}
             </div>
         </div>
     );
