@@ -28,7 +28,7 @@ const Navbar = () => {
         <li><Link>About</Link></li>
         <li><Link>Services</Link></li>
         <li><Link>Blog</Link></li>
-        <li><Link>Contact</Link></li>
+        {user && <li><Link to='/bookings'>My Bookings</Link></li>}
     </>
 
     return (
@@ -56,7 +56,9 @@ const Navbar = () => {
                     user && <h1>{user.email}</h1>
                 }
                 <Link to='/signUp'><button className="btn btn-outline btn-error">Appointment</button></Link>
-                {user && <button className="btn btn-outline btn-error btn-circle" title='Logout' onClick={signOut}><FaSignOutAlt /></button>}
+                {user &&
+                    <button className="btn btn-outline btn-error btn-circle" title='Logout' onClick={signOut}><FaSignOutAlt /></button>
+                }
             </div>
         </div>
     );
