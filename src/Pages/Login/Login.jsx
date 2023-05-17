@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2'
+import { useState } from 'react';
 
 const Login = () => {
+    const [error, setError] = useState(' ');
 
     const {signIn} = useContext(AuthContext);
 
@@ -29,8 +31,12 @@ const Login = () => {
                 confirmButtonText: 'Okay'
               })
             form.reset();
+            setError('');
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error)
+            setError(error.message);
+        })
     }
 
     return (
@@ -58,6 +64,7 @@ const Login = () => {
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
+                            <p className='text-red-500 text-center'>{error}</p>
                             <div className="form-control mt-6">
                                 <input type="submit" value='Login' className='btn btn-error text-white' />
                             </div>
