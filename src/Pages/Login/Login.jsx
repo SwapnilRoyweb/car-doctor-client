@@ -1,7 +1,7 @@
 import React from 'react';
 import img from '../../assets/images/login/login.svg'
 import { FaGooglePlusG, FaFacebook, FaLinkedin } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2'
@@ -10,7 +10,12 @@ import { useState } from 'react';
 const Login = () => {
     const [error, setError] = useState(' ');
 
-    const {signIn} = useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = event => {
         event.preventDefault();
@@ -21,22 +26,23 @@ const Login = () => {
         // console.log(email, password);
 
         signIn(email, password)
-        .then(result => {
-            const user = result.user;
-            // console.log(user);
-            Swal.fire({
-                title: 'Sign In',
-                text: 'User Login Successfully',
-                icon: 'success',
-                confirmButtonText: 'Okay'
-              })
-            form.reset();
-            setError('');
-        })
-        .catch(error => {
-            console.log(error)
-            setError(error.message);
-        })
+            .then(result => {
+                const user = result.user;
+                // console.log(user);
+                Swal.fire({
+                    title: 'Sign In',
+                    text: 'User Login Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Okay'
+                })
+                navigate(from, { replace: true });
+                form.reset();
+                setError('');
+            })
+            .catch(error => {
+                console.log(error)
+                setError(error.message);
+            })
     }
 
     return (
@@ -59,7 +65,7 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" name='password' placeholder="password" className="input input-bordered text-white" />
+                                <input type="password" name='password' placeholder="password" className="input input-bordered text-white" />
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>

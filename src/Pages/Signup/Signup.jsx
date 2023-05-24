@@ -66,7 +66,7 @@ const Signup = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" name='password' placeholder="Confirm Password" className="input input-bordered text-white" />
+                                <input type="password" name='password' placeholder="Confirm Password" className="input input-bordered text-white" />
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
