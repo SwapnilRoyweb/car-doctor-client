@@ -24,11 +24,28 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         // console.log(email, password);
-
         signIn(email, password)
             .then(result => {
                 const user = result.user;
-                // console.log(user);
+
+                const loggedUser = {
+                    email: user.email
+                }
+                console.log(loggedUser);
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type' : 'application/json'
+                    },
+                    body: JSON.stringify(loggedUser)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log('jwt response', data);
+                    // warning: Local storage is not good and secure
+                    localStorage.setItem('car-access-token', data.token)
+                })
+
                 Swal.fire({
                     title: 'Sign In',
                     text: 'User Login Successfully',

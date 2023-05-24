@@ -19,6 +19,7 @@ const Navbar = () => {
                     icon: 'success',
                     confirmButtonText: 'Okay'
                 })
+                localStorage.removeItem('car-access-token');
             })
             .catch(error => console.log(error))
     }
