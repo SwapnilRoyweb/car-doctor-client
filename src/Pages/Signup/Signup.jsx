@@ -6,11 +6,12 @@ import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Signup = () => {
     const [error, setError] = useState('');
 
-    const {createUser} = useContext(AuthContext);
+    const { createUser } = useContext(AuthContext);
 
     const handleSignUp = event => {
         event.preventDefault();
@@ -22,22 +23,22 @@ const Signup = () => {
         // console.log(name, email, password);
 
         createUser(email, password)
-        .then(result => {
-            const user = result.user;
-            // console.log(user);
-            Swal.fire({
-                title: 'Sign up',
-                text: 'User Created Successfully',
-                icon: 'success',
-                confirmButtonText: 'Okay'
-              })
-            form.reset();
-            setError('');
-        })
-        .catch(error => {
-            console.log(error);
-            setError(error.message);
-        })
+            .then(result => {
+                const user = result.user;
+                // console.log(user);
+                Swal.fire({
+                    title: 'Sign up',
+                    text: 'User Created Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Okay'
+                })
+                form.reset();
+                setError('');
+            })
+            .catch(error => {
+                console.log(error);
+                setError(error.message);
+            })
     }
 
     return (
@@ -76,15 +77,8 @@ const Signup = () => {
                                 <input type="submit" value='Sign Up' className='btn btn-error text-white' />
                             </div>
                         </form>
-                        <div className='text-white text-center'>
-                            <p>or sign up with</p>
-                            <div className='flex justify-center gap-5 my-3'>
-                                <button className='btn btn-ghost btn-active btn-circle'><FaGooglePlusG /></button>
-                                <button className='btn btn-ghost btn-active btn-circle'><FaFacebook /></button>
-                                <button className='btn btn-ghost btn-active btn-circle'><FaLinkedin /></button>
-                            </div>
-                            <p>Already have an account? <Link to='/login' className='text-red-500 font-bold'>Login</Link></p>
-                        </div>
+                        <p className='text-center text-white mt-3'>Already have an account? <Link to='/login' className='text-red-500 font-bold'>Login</Link></p>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

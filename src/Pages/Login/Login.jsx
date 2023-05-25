@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2'
 import { useState } from 'react';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
     const [error, setError] = useState(' ');
@@ -28,23 +29,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
 
-                const loggedUser = {
-                    email: user.email
-                }
-                console.log(loggedUser);
-                fetch('http://localhost:5000/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type' : 'application/json'
-                    },
-                    body: JSON.stringify(loggedUser)
-                })
-                .then(res => res.json())
-                .then(data => {
-                    console.log('jwt response', data);
-                    // warning: Local storage is not good and secure
-                    localStorage.setItem('car-access-token', data.token)
-                })
+                console.log(user);
+                navigate(from, { replace: true });
 
                 Swal.fire({
                     title: 'Sign In',
@@ -52,7 +38,7 @@ const Login = () => {
                     icon: 'success',
                     confirmButtonText: 'Okay'
                 })
-                navigate(from, { replace: true });
+                
                 form.reset();
                 setError('');
             })
@@ -92,15 +78,8 @@ const Login = () => {
                                 <input type="submit" value='Login' className='btn btn-error text-white' />
                             </div>
                         </form>
-                        <div className='text-white text-center'>
-                            <p>or sign in with</p>
-                            <div className='flex justify-center gap-5 my-3'>
-                                <button className='btn btn-ghost btn-active btn-circle'><FaGooglePlusG /></button>
-                                <button className='btn btn-ghost btn-active btn-circle'><FaFacebook /></button>
-                                <button className='btn btn-ghost btn-active btn-circle'><FaLinkedin /></button>
-                            </div>
-                            <p>Don't have an account? <Link to='/signUp' className='text-red-500 font-bold'>Sign Up</Link></p>
-                        </div>
+                        <p className='text-center text-white mt-3'>Don't have an account? <Link to='/signUp' className='text-red-500 font-bold'>Sign Up</Link></p>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

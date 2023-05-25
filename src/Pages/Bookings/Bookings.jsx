@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Providers/AuthProvider';
 import BookingRow from './BookingRow';
@@ -10,6 +11,7 @@ const Bookings = () => {
 
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
+    const navigate = useNavigate();
 
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
@@ -21,8 +23,15 @@ const Bookings = () => {
             }
         })
             .then(res => res.json())
-            .then(data => setBookings(data))
-    }, [])
+            .then(data => {
+            if(!data.error){
+                setBookings(data)
+            } else{
+                // logout and then navigate
+                navigate('/');
+            }
+            })
+    }, [navigate, url])
 
     const handleDelete = id => {
          Swal.fire({
